@@ -3,9 +3,9 @@ import multer from ("multer");
 import Report from ("../models/Report");
 import twilio from ("twilio");
 
-import router from  express.Router();
-import nodemailer from ("nodemailer");
-import client from twilio(
+const router = express.Router();
+const nodemailer = ("nodemailer");
+const client = twilio(
   process.env.TWILIO_SID,
   process.env.TWILIO_AUTH
 );
@@ -16,7 +16,7 @@ await client.messages.create({
   body: "🚨 New Near-Miss Safety Report Submitted"
 });
 
-import transporter from nodemailer.createTransport({
+const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
     user: "yourgmail@gmail.com",
@@ -25,13 +25,13 @@ import transporter from nodemailer.createTransport({
 });
 
 
-import storage from multer.diskStorage({
+const storage = multer.diskStorage({
     destination: "uploads/",
     filename: (req, file, cb) =>
         cb(null, Date.now() + "-" + file.originalname)
 });
 
-import upload from multer({ storage });
+const upload = multer({ storage });
 
 // Create report
 router.post("/", upload.single("image"), async (req, res) => {

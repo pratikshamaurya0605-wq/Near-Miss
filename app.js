@@ -7,7 +7,7 @@ dotenv.config();
 import reportRoutes from ("./route/report.routes");
 import adminRoutes from ("./route/admin.routes");
 
-import app from express();
+const app = express();
 
 mongoose.connect(process.env.MONGO_URI)
 .then(() => console.log("✅ MongoDB Connected"));
