@@ -1,12 +1,13 @@
-const express = require("express");
-const mongoose = require("mongoose");
-const path = require("path");
-require("dotenv").config();
+import express from ("express");
+import mongoose from("mongoose");
+import path from("path");
+import dotenv from "dotenv";
+dotenv.config();
 
-const reportRoutes = require("./route/report.routes");
-const adminRoutes = require("./route/admin.routes");
+import reportRoutes from ("./route/report.routes");
+import adminRoutes from ("./route/admin.routes");
 
-const app = express();
+import app from express();
 
 mongoose.connect(process.env.MONGO_URI)
 .then(() => console.log("✅ MongoDB Connected"));

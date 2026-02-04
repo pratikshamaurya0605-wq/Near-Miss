@@ -1,11 +1,11 @@
-const express = require("express");
-const multer = require("multer");
-const Report = require("../models/Report");
-const twilio = require("twilio");
+import express from ("express");
+import multer from ("multer");
+import Report from ("../models/Report");
+import twilio from ("twilio");
 
-const router = express.Router();
-const nodemailer = require("nodemailer");
-const client = twilio(
+import router from  express.Router();
+import nodemailer from ("nodemailer");
+import client from twilio(
   process.env.TWILIO_SID,
   process.env.TWILIO_AUTH
 );
@@ -16,7 +16,7 @@ await client.messages.create({
   body: "🚨 New Near-Miss Safety Report Submitted"
 });
 
-const transporter = nodemailer.createTransport({
+import transporter from nodemailer.createTransport({
   service: "gmail",
   auth: {
     user: "yourgmail@gmail.com",
@@ -25,13 +25,13 @@ const transporter = nodemailer.createTransport({
 });
 
 
-const storage = multer.diskStorage({
+import storage from multer.diskStorage({
     destination: "uploads/",
     filename: (req, file, cb) =>
         cb(null, Date.now() + "-" + file.originalname)
 });
 
-const upload = multer({ storage });
+import upload from multer({ storage });
 
 // Create report
 router.post("/", upload.single("image"), async (req, res) => {
@@ -39,7 +39,7 @@ router.post("/", upload.single("image"), async (req, res) => {
         description: req.body.description,
         image: req.file.filename,
         latitude: req.body.latitude,
-        longitude: req.body.longitude
+        longitude: req.body.longimport
 
     });
     await transporter.sendMail({
@@ -50,9 +50,9 @@ router.post("/", upload.single("image"), async (req, res) => {
 })
 // Get all reports
 router.get("/stats", async (req, res) => {
-  const pending = await Report.countDocuments({ status: "Pending" });
-  const progress = await Report.countDocuments({ status: "In Progress" });
-  const resolved = await Report.countDocuments({ status: "Resolved" });
+  const  pending = await Report.countDocuments({ status: "Pending" });
+  const progress =  await Report.countDocuments({ status: "In Progress" });
+  const resolved =  await Report.countDocuments({ status: "Resolved" });
 
   res.json({ pending, progress, resolved });
 });
@@ -66,4 +66,4 @@ router.put("/:id", async (req, res) => {
     res.json({ message: "Status updated" });
 });
 
-module.exports = router;
+export default router;

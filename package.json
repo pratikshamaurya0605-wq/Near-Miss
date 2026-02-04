@@ -1,5 +1,6 @@
 {
   "name": "near-miss-app",
+  "type": "module",
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
