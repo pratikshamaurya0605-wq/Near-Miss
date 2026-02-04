@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Near-Miss Report</title>
+</head>
+<body>
+
+<h2>🚧 Near-Miss Report</h2>
+<form <input type="hidden" name="latitude" id="lat">
+<input type="hidden" name="longitude" id="lng">
+<button type="button" onclick="getLocation()">📍 Capture Location</button>
+<p id="loc"></p>
+
+</form>
+
+<a href="admin-login.html">Admin Login</a>
+
+<script>
+function getLocation() {
+  navigator.geolocation.getCurrentPosition(pos => {
+    lat.value = pos.coords.latitude;
+    lng.value = pos.coords.longitude;
+    loc.innerText = "Location captured ✔";
+  });
+}
+</script>
+
+</body>
+</html>
