@@ -1,11 +1,11 @@
-import express from ("express");
-import mongoose from("mongoose");
-import path from("path");
+import express from "express";
+import mongoose from"mongoose";
+import path from"path";
 import dotenv from "dotenv";
 dotenv.config();
 
-import reportRoutes from ("./route/report.routes");
-import adminRoutes from ("./route/admin.routes");
+import reportRoutes from "./route/report.routes";
+import adminRoutes from "./route/admin.routes";
 
 const app = express();
 
